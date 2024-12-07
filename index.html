@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+
+        .parent{
+            border: 2px solid black;
+            border-radius: 10px;
+            background-color: black;
+            display: flex;
+            justify-content: center;
+            padding: 20px;
+            align-items: center;
+            margin: 10px auto;
+            width: fit-content;
+
+        }
+
+        .container-1{
+           
+           margin: 5px;
+        }
+
+        .container-2{
+           
+            height: 500px;
+            margin: 5px;
+            border-radius: 5px;
+        }
+        .search{
+            width: 200px;
+            padding: 7px;
+            text-align: center;
+            font-family: cursive;
+            color: black;
+            border: 2px solid black;
+            border-radius: 5px;
+            &::placeholder{
+                color: black;
+                font-weight: 700;
+                font-size: 15px;
+            }
+        }
+        .img{
+            height: 500px;
+            border-radius: 10px;
+            
+        }
+
+        .student-card{
+            border: 1px solid black;
+            padding: 5px;
+            margin: 7px;
+            border-radius: 5px;
+            background-color: white;
+            font-family: cursive;
+            font-weight: 500;
+
+        }
+    </style>
+</head>
+<body>
+
+    <div class="parent">
+
+    <div class="container-1">
+        <img src="./ui-2.png" alt="ui-image" class="img">
+    </div>
+
+
+    <div class="container-2">
+    <input type="text" placeholder="search name" id="search-box" onkeyup="loadSearchBox()" class="search">
+    <div id="students-container"></div>
+    </div>
+
+
+    </div>
+
+
+
+
+    <script>
+        const students = [
+            "saurabh",
+            "nikhil",
+            "abhijeet",
+            "dipak",
+            "rushikesh",
+            'prajwal',
+            "rutik",
+            "yash",
+            "shubham",
+            "omkar",
+            "harshal"
+        ]
+
+        const studentsContainer =document.getElementById("students-container");
+
+        students.forEach((student)=>{
+            studentsContainer.innerHTML += `<div class='student-card'>${student}</div>`
+        })
+
+        function loadSearchBox () {
+          const inputElement = document.getElementById("search-box")
+          const searchText = inputElement.value.toLowerCase();
+
+         studentsContainer.innerHTML = '';
+
+         const filteredstudent = students.filter((student)=>{
+            if(student.toLowerCase().includes(searchText)){
+                return true;
+            }
+            })
+
+         filteredstudent.forEach((student)=>{
+            studentsContainer.innerHTML += `<div class='student-card'>${student}</div>`
+        })
+        }
+    </script>
+</body>
+</html>
